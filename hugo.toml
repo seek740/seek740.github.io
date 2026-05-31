@@ -70,9 +70,9 @@ buildFuture = false
   # Giscus 评论系统 - 去 https://giscus.app 获取你的 repo-id 和 category-id
   [params.giscus]
     repo = "seek740/seek740.github.io"
-    repoId = "YOUR_REPO_ID"
-    category = "Announcements"
-    categoryId = "YOUR_CATEGORY_ID"
+    repoId = "R_kgDOSs79kg"
+    category = "General"
+    categoryId = "DIC_kwDOSs79ks4C-NV_"
     mapping = "pathname"
     lang = "zh-CN"
 
