@@ -1,9 +1,0 @@
-<!-- 粒子星空画布 -->
-<canvas id="particle-canvas"></canvas>
-<!-- 鼠标光晕 -->
-<div class="mouse-glow" id="mouse-glow"></div>
-<!-- 页面进度条 -->
-<div class="scroll-progress" id="scroll-progress" style="width:0%"></div>
-
-{{- $js := resources.Get "js/animations.js" | resources.Minify | resources.Fingerprint }}
-<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
