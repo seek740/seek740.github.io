@@ -1,0 +1,183 @@
+<script>
+(function() {
+  // ===== 1. 粒子星空背景 =====
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animationId;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = document.documentElement.scrollHeight;
+  }
+
+  function createParticles() {
+    const count = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
+    particles = [];
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 0.5,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.5 + 0.3
+      });
+    }
+  }
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    const color = isDark ? '255, 255, 255' : '100, 149, 237';
+
+    particles.forEach((p, i) => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${color}, ${p.opacity})`;
+      ctx.fill();
+
+      // 连线
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = p.x - particles[j].x;
+        const dy = p.y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(${color}, ${0.1 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+
+      // 移动
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    });
+
+    animationId = requestAnimationFrame(drawParticles);
+  }
+
+  function initParticles() {
+    resizeCanvas();
+    createParticles();
+    drawParticles();
+  }
+
+  // ===== 2. 鼠标光晕 =====
+  const mouseGlow = document.getElementById('mouse-glow');
+  let glowX = -300, glowY = -300;
+  let targetX = -300, targetY = -300;
+
+  document.addEventListener('mousemove', function(e) {
+    targetX = e.clientX;
+    targetY = e.clientY + window.scrollY;
+  });
+
+  function animateGlow() {
+    glowX += (targetX - glowX) * 0.1;
+    glowY += (targetY - glowY) * 0.1;
+    mouseGlow.style.left = glowX + 'px';
+    mouseGlow.style.top = glowY + 'px';
+    requestAnimationFrame(animateGlow);
+  }
+
+  // ===== 3. 滚动淡入动画 =====
+  function initScrollAnimations() {
+    const elements = document.querySelectorAll('.post-entry, .home-info, .post-single .post-header, .post-content h2, .post-content h3');
+    elements.forEach(function(el) {
+      el.classList.add('fade-in-up');
+    });
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-in-up').forEach(function(el) {
+      observer.observe(el);
+    });
+  }
+
+  // ===== 4. 进度条 =====
+  const progressBar = document.getElementById('scroll-progress');
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+  }
+
+  // ===== 5. 卡片 3D 倾斜 =====
+  function initTilt() {
+    document.querySelectorAll('.post-entry').forEach(function(card) {
+      card.classList.add('tilt-card');
+      card.addEventListener('mousemove', function(e) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / centerY * -5;
+        const rotateY = (x - centerX) / centerX * 5;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+      });
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+      });
+    });
+  }
+
+  // ===== 6. 首页打字机 =====
+  function initTypewriter() {
+    const homeTitle = document.querySelector('.home-info .entry-header h1');
+    if (!homeTitle) return;
+
+    const cursor = document.createElement('span');
+    cursor.className = 'typewriter-cursor';
+    homeTitle.appendChild(cursor);
+
+    const observer = new MutationObserver(function() {
+      const text = homeTitle.textContent;
+      // 只需光标，文字保留
+    });
+
+    // 初始可见
+    const titleEl = homeTitle;
+    titleEl.style.borderRight = 'none';
+  }
+
+  // ===== 初始化 =====
+  initParticles();
+  animateGlow();
+  initScrollAnimations();
+  initTilt();
+  initTypewriter();
+
+  window.addEventListener('scroll', updateProgress);
+  window.addEventListener('resize', function() {
+    resizeCanvas();
+    createParticles();
+  });
+
+  // 主题切换时重绘粒子
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    const origClick = themeToggle.onclick;
+    themeToggle.addEventListener('click', function() {
+      setTimeout(function() {
+        cancelAnimationFrame(animationId);
+        initParticles();
+      }, 200);
+    });
+  }
+
+})();
+</script>
