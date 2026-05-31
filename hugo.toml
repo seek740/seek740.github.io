@@ -58,10 +58,34 @@ buildFuture = false
   ShowRssButtonInSectionTermList = false
   UseHugoToc = true
 
-  # 首页信息卡
+  # 首页个人卡片
+  [params.profileMode]
+    enabled = true
+    title = "seek740"
+    subtitle = "全栈开发者 · 技术爱好者\n记录学习与实践，分享开发经验"
+    imageUrl = "/images/avatar.svg"
+    imageWidth = 120
+    imageHeight = 120
+
+    [[params.profileMode.buttons]]
+      name = "文章"
+      url = "/posts/"
+
+    [[params.profileMode.buttons]]
+      name = "标签"
+      url = "/tags/"
+
+    [[params.profileMode.buttons]]
+      name = "归档"
+      url = "/archives/"
+
+    [[params.profileMode.buttons]]
+      name = "GitHub"
+      url = "https://github.com/seek740"
+
   [params.homeInfoParams]
-    Title = "Hi there 👋"
-    Content = "欢迎来到我的技术博客，这里记录我的学习与实践笔记。"
+    Title = ""
+    Content = ""
 
   # 社交图标
   [[params.socialIcons]]
