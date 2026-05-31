@@ -28,7 +28,7 @@
   function drawParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const isDark = document.documentElement.dataset.theme === 'dark';
-    const color = isDark ? '255, 255, 255' : '100, 149, 237';
+    const color = isDark ? '178, 235, 242' : '0, 188, 212';
 
     particles.forEach((p, i) => {
       ctx.beginPath();

@@ -18,8 +18,8 @@
   pointer-events: none;
   z-index: -1;
   background: radial-gradient(circle, 
-    rgba(100, 149, 237, 0.15) 0%, 
-    rgba(100, 149, 237, 0.05) 30%, 
+    rgba(0, 188, 212, 0.15) 0%, 
+    rgba(0, 188, 212, 0.05) 30%, 
     transparent 70%
   );
   transform: translate(-50%, -50%);
@@ -89,7 +89,7 @@
 }
 
 .post-content .highlight:hover {
-  box-shadow: 0 0 20px rgba(100, 149, 237, 0.3), 0 0 40px rgba(100, 149, 237, 0.1);
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.3), 0 0 40px rgba(0, 188, 212, 0.1);
 }
 
 /* ===== 按钮 / 链接悬停动效 ===== */
@@ -101,7 +101,7 @@
 
 /* ===== 导航栏发光 ===== */
 #menu a:hover {
-  text-shadow: 0 0 10px rgba(100, 149, 237, 0.5);
+  text-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
 }
 
 /* ===== 进度条（页面顶部） ===== */
@@ -110,7 +110,7 @@
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+  background: linear-gradient(90deg, #00BCD4, #26C6DA, #80DEEA);
   z-index: 100;
   transition: width 0.1s linear;
   border-radius: 0 3px 3px 0;
@@ -169,23 +169,23 @@
 
 .profile img {
   border-radius: 50%;
-  box-shadow: 0 0 30px rgba(102, 126, 234, 0.4), 0 0 60px rgba(118, 75, 162, 0.2);
+  box-shadow: 0 0 30px rgba(0, 188, 212, 0.4), 0 0 60px rgba(0, 150, 136, 0.2);
   transition: box-shadow 0.5s ease, transform 0.5s ease;
   animation: avatar-glow 3s ease-in-out infinite alternate;
 }
 
 .profile img:hover {
   transform: scale(1.08) rotate(5deg);
-  box-shadow: 0 0 50px rgba(102, 126, 234, 0.6), 0 0 80px rgba(118, 75, 162, 0.4);
+  box-shadow: 0 0 50px rgba(0, 188, 212, 0.6), 0 0 80px rgba(0, 150, 136, 0.4);
 }
 
 @keyframes avatar-glow {
-  0% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3), 0 0 40px rgba(118, 75, 162, 0.15); }
-  100% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.5), 0 0 70px rgba(118, 75, 162, 0.3); }
+  0% { box-shadow: 0 0 20px rgba(0, 188, 212, 0.3), 0 0 40px rgba(0, 150, 136, 0.15); }
+  100% { box-shadow: 0 0 40px rgba(0, 188, 212, 0.5), 0 0 70px rgba(0, 150, 136, 0.3); }
 }
 
 .profile h1 {
-  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+  background: linear-gradient(135deg, #00BCD4, #009688, #80DEEA);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -194,7 +194,7 @@
 }
 
 [data-theme="dark"] .profile h1 {
-  background: linear-gradient(135deg, #a78bfa, #c084fc, #e879f9);
+  background: linear-gradient(135deg, #4DD0E1, #26C6DA, #80DEEA);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -210,11 +210,11 @@
 .profile .profile-buttons a {
   padding: 0.5rem 1.2rem;
   border-radius: 25px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #00BCD4, #26C6DA);
   color: white !important;
   font-weight: 600;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -236,12 +236,12 @@
 
 .profile .profile-buttons a:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 6px 25px rgba(0, 188, 212, 0.5);
 }
 
 [data-theme="dark"] .profile .profile-buttons a {
-  background: linear-gradient(135deg, #7c3aed, #9333ea);
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+  background: linear-gradient(135deg, #00838F, #00ACC1);
+  box-shadow: 0 4px 15px rgba(0, 131, 143, 0.4);
 }
 
 /* ===== 文章卡片渐变边框 ===== */
@@ -258,7 +258,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+  background: linear-gradient(90deg, #00BCD4, #009688, #80DEEA);
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -269,7 +269,7 @@
 
 /* ===== 网站标题渐变 ===== */
 .logo a {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #00BCD4, #009688);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -282,7 +282,7 @@
 }
 
 [data-theme="dark"] .logo a {
-  background: linear-gradient(135deg, #a78bfa, #e879f9);
+  background: linear-gradient(135deg, #4DD0E1, #80DEEA);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -291,8 +291,8 @@
 /* ===== 深色模式下粒子颜色适配 ===== */
 [data-theme="dark"] .mouse-glow {
   background: radial-gradient(circle, 
-    rgba(147, 112, 219, 0.2) 0%, 
-    rgba(147, 112, 219, 0.05) 30%, 
+    rgba(0, 188, 212, 0.2) 0%, 
+    rgba(0, 188, 212, 0.05) 30%, 
     transparent 70%
   );
 }
