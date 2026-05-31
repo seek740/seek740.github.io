@@ -48,6 +48,7 @@ buildFuture = false
   defaultTheme = "auto"
   disableThemeToggle = false
 
+  comments = true
   ShowReadingTime = true
   ShowShareButtons = true
   ShowPostNavLinks = true

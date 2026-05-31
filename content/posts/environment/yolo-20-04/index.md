@@ -4,6 +4,7 @@ date: "2020-04-20T00:00:00+08:00"
 tags: ["YOLO", "深度学习", "环境配置"]
 categories: ["environment"]
 draft: false
+comments: true
 showToc: true
 TocOpen: false
 description: "从零开始搭建 YOLO 目标检测环境，包含 CUDA、cuDNN、Darknet 的安装与配置。"
